@@ -1,6 +1,9 @@
 package br.com.digitalRepository.back.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * @author Franciuíne Almeida (franciuine.almeida@ecomp.ufsm.br)
@@ -9,7 +12,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class Component {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
 
@@ -28,5 +33,5 @@ public class Component {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

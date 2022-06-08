@@ -1,14 +1,18 @@
 package br.com.digitalRepository.back.controller;
 
 import java.util.List;
+
 import br.com.digitalRepository.back.entity.User;
+import br.com.digitalRepository.back.repository.UserRepository;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Franciuíne Almeida (franciuine.almeida@ecomp.ufsm.br)
@@ -16,26 +20,31 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1")
 public class UserController {
 	
-	@GetMapping("/load")
+	@Autowired
+	private UserRepository userRepository;
+	
+	@GetMapping("/users")
 	public List<User> findAll() {
-		return null;
+		return userRepository.findAll();
 	}
 	
-	@GetMapping("/load/by/id/{id}")
+	@GetMapping("/users/{id}")
 	public User findById(@PathVariable(value = "id") Long userId) {
-		return null;
+		return userRepository.findById(userId).get();
 	}
 	
-	@PostMapping("/save") 
-	public void save(@RequestBody User user) {
+	@PostMapping("/users") 
+	public User save(@RequestBody User user) {
+		return userRepository.save(user);
 	}
 	
-	@DeleteMapping("/delete")
+	@DeleteMapping("/users/{id}")
 	public void delete(@PathVariable(value = "id") Long userId) {
-		
+		User user = userRepository.findById(userId).get();
+		userRepository.delete(user);
 	}
 
 }
