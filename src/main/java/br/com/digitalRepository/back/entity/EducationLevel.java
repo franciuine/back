@@ -1,13 +1,9 @@
 package br.com.digitalRepository.back.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  * @author Franciuíne Almeida (franciuine.almeida@ecomp.ufsm.br)
@@ -21,8 +17,7 @@ public class EducationLevel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long levelId;
 	private String name;
-	@OneToMany(targetEntity=Component.class, mappedBy="id", fetch=FetchType.EAGER)
-	private List<Component> components;
+	private String components; 
 	
 	public long getLevelId() {
 		return levelId;
@@ -39,11 +34,11 @@ public class EducationLevel {
 		this.name = name;
 	}
 	
-	public List<Component> getComponents() {
+	public String getComponents() {
 		return components;
 	}
 	
-	public void setComponents(List<Component> components) {
+	public void setComponents(String components) {
 		this.components = components;
 	}
 	

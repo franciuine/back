@@ -1,6 +1,8 @@
 package br.com.digitalRepository.back.entity;
 
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +22,9 @@ public class LessonPlan {
 	private String description;
 	private Pillar pillar;
 	private Field field;
-	private Component component;
+	private String component;
+	@OneToOne
+    @MapsId
 	private EducationLevel educationLevel;
 	private boolean enabled;
 
@@ -74,11 +78,11 @@ public class LessonPlan {
 		this.field = field;
 	}
 
-	public Component getComponent() {
+	public String getComponent() {
 		return component;
 	}
 
-	public void setComponent(Component component) {
+	public void setComponent(String component) {
 		this.component = component;
 	}
 	
