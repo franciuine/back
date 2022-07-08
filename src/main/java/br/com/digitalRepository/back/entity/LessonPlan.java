@@ -30,6 +30,7 @@ public class LessonPlan {
 	@MapsId
 	private User user;
 	private boolean enabled;
+	private String tutorial;
 
 	// DEC = decomposição, PAT = reconhecimento de padrões, ABS = abstração, ALG = algoritmos
 	public enum Pillar {
@@ -112,5 +113,15 @@ public class LessonPlan {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public String getTutorial() {
+		return tutorial;
+	}
+
+	public void setTutorial(String tutorial) {
+		this.tutorial = tutorial;
+	}
+	
+	
 	
 }
