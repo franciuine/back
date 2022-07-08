@@ -26,6 +26,9 @@ public class LessonPlan {
 	@OneToOne
     @MapsId
 	private EducationLevel educationLevel;
+	@OneToOne
+	@MapsId
+	private User user;
 	private boolean enabled;
 
 	// DEC = decomposição, PAT = reconhecimento de padrões, ABS = abstração, ALG = algoritmos
@@ -101,5 +104,13 @@ public class LessonPlan {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-
+    
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }
