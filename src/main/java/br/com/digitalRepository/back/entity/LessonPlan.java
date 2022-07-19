@@ -20,8 +20,7 @@ public class LessonPlan {
 	private long id;
 	private String name;
 	private String description;
-	private Pillar pillar;
-	private Field field;
+	private String pillar;
 	private String component;
 	@OneToOne
     @MapsId
@@ -31,16 +30,6 @@ public class LessonPlan {
 	private User user;
 	private boolean enabled;
 	private String tutorial;
-
-	// DEC = decomposição, PAT = reconhecimento de padrões, ABS = abstração, ALG = algoritmos
-	public enum Pillar {
-		DEC, PAT, ABS, ALG;
-	}
-	
-	// MAT = matemática, LAN = linguagens, NAT = ciências da natureza, HUM = ciências humanas
-	public enum Field {
-		MAT, LAN, NAT, HUM;
-	}
 	
 	public long getId() {
 		return id;
@@ -66,20 +55,12 @@ public class LessonPlan {
 		this.description = description;
 	}
 
-	public Pillar getPillar() {
+	public String getPillar() {
 		return pillar;
 	}
 
-	public void setPillar(Pillar pillar) {
+	public void setPillar(String pillar) {
 		this.pillar = pillar;
-	}
-
-	public Field getField() {
-		return field;
-	}
-
-	public void setField(Field field) {
-		this.field = field;
 	}
 
 	public String getComponent() {
