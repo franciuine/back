@@ -1,0 +1,15 @@
+INSERT INTO education_level (id, components, name) 
+VALUES (1, 'O eu, o outro e o nós/Corpo, gestos e movimentos/Traços, sons, cores e formas/Escuta, fala, pensamento e imaginação/Espaços, tempos, quantidades, relações e transformações', 'Creche'),
+       (2, 'O eu, o outro e o nós/Corpo, gestos e movimentos/Traços, sons, cores e formas/Escuta, fala, pensamento e imaginação/Espaços, tempos, quantidades, relações e transformações', 'Pré-escola'),
+       (3, 'Língua Portuguesa/Arte/Educação Física/Matemática/Ciências/Geografia/História/Ensino Religioso', '1º ano - Ensino Fundamental'),
+       (4, 'Língua Portuguesa/Arte/Educação Física/Matemática/Ciências/Geografia/História/Ensino Religioso', '2º ano - Ensino Fundamental'),
+       (5, 'Língua Portuguesa/Arte/Educação Física/Matemática/Ciências/Geografia/História/Ensino Religioso', '3º ano - Ensino Fundamental'),
+       (6, 'Língua Portuguesa/Arte/Educação Física/Matemática/Ciências/Geografia/História/Ensino Religioso', '4º ano - Ensino Fundamental'),
+       (7, 'Língua Portuguesa/Arte/Educação Física/Matemática/Ciências/Geografia/História/Ensino Religioso', '5º ano - Ensino Fundamental'),
+       (8, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Matemática/Ciências/Geografia/História/Ensino Religioso', '6º ano - Ensino Fundamental'),
+       (9, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Matemática/Ciências/Geografia/História/Ensino Religioso', '7º ano - Ensino Fundamental'),
+       (10, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Matemática/Ciências/Geografia/História/Ensino Religioso', '8º ano - Ensino Fundamental'),
+       (11, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Matemática/Ciências/Geografia/História/Ensino Religioso', '9º ano - Ensino Fundamental'),
+       (12, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Língua Espanhola/Matemática/Química/Física/Biologia/Geografia/História/Sociologia/Filosofia/Projeto de Vida', '1º ano - Ensino Médio'),
+       (13, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Língua Espanhola/Matemática/Química/Física/Biologia/Geografia/História/Sociologia/Filosofia/Projeto de Vida', '2º ano - Ensino Médio'),
+       (14, 'Língua Portuguesa/Arte/Educação Física/Língua Inglesa/Língua Espanhola/Matemática/Química/Física/Biologia/Geografia/História/Sociologia/Filosofia/Projeto de Vida', '3º ano - Ensino Médio');

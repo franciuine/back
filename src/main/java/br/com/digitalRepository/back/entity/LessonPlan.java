@@ -1,8 +1,8 @@
 package br.com.digitalRepository.back.entity;
 
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +22,16 @@ public class LessonPlan {
 	private String description;
 	private String pillar;
 	private String component;
-	@OneToOne
-    @MapsId
+	@ManyToOne
+	@JoinColumn(name="education_level_id",  nullable = false)
 	private EducationLevel educationLevel;
-	@OneToOne
-	@MapsId
-	private User user;
+	@ManyToOne
+	@JoinColumn(name="author_id",  nullable = false)
+	private User author;
 	private boolean enabled;
 	private String tutorial;
+	private String evaluation;
+	// o pdf deve ser armazenado nessa tabela
 	
 	public long getId() {
 		return id;
@@ -74,7 +76,7 @@ public class LessonPlan {
 	public EducationLevel getEducationLevel() {
 		return educationLevel;
 	}
-
+	
 	public void setEducationLevel(EducationLevel educationLevel) {
 		this.educationLevel = educationLevel;
 	}
@@ -87,12 +89,12 @@ public class LessonPlan {
 		this.enabled = enabled;
 	}
     
-	public User getUser() {
-		return user;
+	public User getAuthor() {
+		return author;
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 	
 	public String getTutorial() {
@@ -101,6 +103,14 @@ public class LessonPlan {
 
 	public void setTutorial(String tutorial) {
 		this.tutorial = tutorial;
+	}
+	
+	public String getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(String evaluation) {
+		this.evaluation = evaluation;
 	}
 	
 	
