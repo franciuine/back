@@ -4,17 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.digitalRepository.back.entity.User;
+import br.com.digitalRepository.back.entity.enums.RoleType;
 import br.com.digitalRepository.back.repository.UserRepository;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
@@ -23,40 +26,48 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(path="/user")
+@CrossOrigin(origins = "*")
 public class UserController {
-	
+	private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/users")
+	@GetMapping("/all")
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/{id}")
 	public User findById(@PathVariable(value = "id") Long userId) {
 		return userRepository.findById(userId).get();
 	}
 
-	@PostMapping("/users") 
+	@GetMapping("/get/user/{username}")
+	public User findByUsername(@PathVariable(value = "username") String username) {
+		return userRepository.findByUsername(username);
+	}
+
+	@PostMapping("/save") 
 	public User save(@RequestBody User user) throws Exception {
 		try {
-			if (user.getId() != 0) {
-                user.setPassword(restorePassword(user.getId()));
-            } else {
-                user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-            }
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			user.setRole(RoleType.ROLE_USER);
 			return userRepository.save(user);
 		} catch (DataIntegrityViolationException ex) {
             throw new Exception("Já existe um usuário com este login.");
 		}
 	}
 	
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable(value = "id") Long userId) {
 		User user = userRepository.findById(userId).get();
 		userRepository.delete(user);
+	}
+
+	@GetMapping(value="/logout")
+	public void logout() {
+		SecurityContextHolder.getContext().setAuthentication(null);
 	}
 	
 	private String restorePassword(Long id) throws Exception {
@@ -66,5 +77,45 @@ public class UserController {
         }
         throw new Exception("Usuário não encontrado");
     }
+
+	@GetMapping(value="/currentuser")
+	public @ResponseBody String GetCurrentUser()
+	{		
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+	}
+
+	@GetMapping(value="/add")
+	public @ResponseBody String AdicionarUsuarios()
+	{
+    	User user = new User();
+    	user.setRole(RoleType.ROLE_ADMIN);
+		user.setName("Franciuíne Almeida");
+    	user.setUsername("fran");
+    	user.setPassword(bCryptPasswordEncoder.encode("teste2009"));
+    	userRepository.save(user);
+
+		return "ok";
+	}    	
+    
+    
+    @GetMapping(value="/usuario")
+	public @ResponseBody String Usuario()
+	{
+		return "ok";
+	}
+    
+    @GetMapping(value="/admin")
+	public @ResponseBody String Admin()
+	{
+		return "ok";
+	}
+    
+    
+    @GetMapping(value="/qualquer")
+	public @ResponseBody String QualquerPermissao()
+	{
+		return "ok";
+	}
+
 
 }

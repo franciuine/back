@@ -4,14 +4,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import br.com.digitalRepository.back.audit.AuditUserDate;
 import br.com.digitalRepository.back.entity.enums.RoleType;
-import lombok.Data;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -20,11 +14,12 @@ import javax.persistence.GenerationType;
  * @version Jun 6, 2022
  */
 
-@Data
 @Entity
 @Table(name = "users")
-public class User extends AuditUserDate {
+public class User{
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)    
 	private Long id;
 	private String name;
 	private String username;
@@ -32,31 +27,28 @@ public class User extends AuditUserDate {
 	private RoleType role;
 	private String token;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 
-	@Column(nullable = false, length = 100)
 	public String getName() {
 		return name;
 	}
 
-	@Column(unique = true, nullable = false, length = 20)
 	public String getUsername() {
 		return username;
 	}
 
-	@Column(nullable = false)
 	public String getPassword() {
 		return password;
 	}
-
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 15)
 	public RoleType getRole() {
 		return role;
+	}
+
+	public boolean getIsAdmin()
+	{
+		return this.role == RoleType.ROLE_ADMIN;
 	}
 
 	public void setId(Long id) {
@@ -88,7 +80,6 @@ public class User extends AuditUserDate {
 	public void setPassword(String password) {
 		this.password = password;
 
-	}
-	
+	}	
 	
 }

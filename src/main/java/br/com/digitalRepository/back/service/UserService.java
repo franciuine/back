@@ -1,19 +1,29 @@
 package br.com.digitalRepository.back.service;
 
-import java.beans.JavaBean;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import br.com.digitalRepository.back.entity.User;
+import br.com.digitalRepository.back.repository.UserRepository;
 
-@JavaBean
-public interface UserService {
+
+@Component
+@Service
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
 	
-	User findById(long id);
+	public User findByUserName(String userName)
+	{
+		return userRepository.findByUsername(userName);
+	}
 	
-	User save(User user);
-	
-	void delete(long id);
-	
-	List<User> findAll();
+	public void save(User user)
+	{
+		userRepository.save(user);
+	}
+
 	
 }

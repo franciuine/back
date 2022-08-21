@@ -1,6 +1,8 @@
 package br.com.digitalRepository.back.repository;
 
 import br.com.digitalRepository.back.entity.LessonPlan;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -10,5 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LessonPlanRepository extends JpaRepository <LessonPlan, Long>{
 	
+    List<LessonPlan> findByEnabledTrue();
 
+    List<LessonPlan> findByAuthor(String username);
 }
+

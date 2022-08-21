@@ -3,6 +3,8 @@ package br.com.digitalRepository.back.entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,17 +24,27 @@ public class LessonPlan {
 	private String description;
 	private String pillar;
 	private String component;
-	@ManyToOne
-	@JoinColumn(name="education_level_id",  nullable = false)
-	private EducationLevel educationLevel;
-	@ManyToOne
-	@JoinColumn(name="author_id",  nullable = false)
-	private User author;
+	private String educationLevel;
+	private String author;
 	private boolean enabled;
 	private String tutorial;
 	private String evaluation;
-	// o pdf deve ser armazenado nessa tabela
-	
+	private String hability;
+	private String teacherLevel;
+	private String pdfName;
+
+	// @OneToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "pdf_id", referencedColumnName = "id")
+    // private Pdf pdf;
+	//
+	// public Pdf getPdf() {
+	// 	return this.pdf;
+	//}
+    //
+	//public void setPdf(Pdf pdf) {
+	//	this.pdf = pdf;	
+	//}
+
 	public long getId() {
 		return id;
 	}
@@ -73,11 +85,11 @@ public class LessonPlan {
 		this.component = component;
 	}
 	
-	public EducationLevel getEducationLevel() {
+	public String getEducationLevel() {
 		return educationLevel;
 	}
 	
-	public void setEducationLevel(EducationLevel educationLevel) {
+	public void setEducationLevel(String educationLevel) {
 		this.educationLevel = educationLevel;
 	}
 
@@ -89,11 +101,11 @@ public class LessonPlan {
 		this.enabled = enabled;
 	}
     
-	public User getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 	
-	public void setAuthor(User author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 	
@@ -113,6 +125,28 @@ public class LessonPlan {
 		this.evaluation = evaluation;
 	}
 	
+	public String getHability() {
+		return hability;
+	}
+
+	public void setHability(String hability) {
+		this.hability = hability;
+	}
 	
-	
+	public String getTeacherLevel() {
+		return teacherLevel;
+	}
+
+	public void setTeacherLevel(String teacherLevel) {
+		this.teacherLevel = teacherLevel;
+	}
+
+	public String getPdfName () {
+		return pdfName;
+	}
+
+	public void setPdfName(String pdfName) {
+		this.pdfName = pdfName;
+	}
+
 }

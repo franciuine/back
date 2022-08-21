@@ -18,23 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(value="/educationlevel")
 public class EducationLevelController {
 	
 	@Autowired
 	private EducationLevelRepository educationLevelRepository;
     
-	@GetMapping("/levels")
+	@GetMapping(value="/all")
 	public List<EducationLevel> findAll() {
 		return educationLevelRepository.findAll();
 	}
 	
-	@PostMapping("/levels")
+	@PostMapping(value="/save")
 	public EducationLevel save(@RequestBody EducationLevel level) {
 		return educationLevelRepository.save(level);
 	}
 	
-	@GetMapping("/levels/{id}")
+	@GetMapping(value="/get/{id}")
 	public EducationLevel findById(@PathVariable(value = "id") Long levelId) {
 		return educationLevelRepository.findById(levelId).get();
 	}
